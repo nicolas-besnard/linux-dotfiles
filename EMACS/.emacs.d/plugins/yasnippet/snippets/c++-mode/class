@@ -1,0 +1,21 @@
+# name: class ... { ... }
+# key: class
+# --
+class				${1:Name}
+{
+// ATTRIBUTS
+private:
+
+// CTOR - DTOR
+public:
+    ${1:$(yas-substr text "[^: ]*")}($2);
+    ~${1:$(yas-substr text "[^: ]*")}();
+    ${1:$(yas-substr text "[^: ]*")}($1 const &);
+    
+// OPERATOR
+public:
+$1 &			operator=($1 const &);
+
+// METHODS
+public:
+};

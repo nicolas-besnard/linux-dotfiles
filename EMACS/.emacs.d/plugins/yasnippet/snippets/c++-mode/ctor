@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: constructor
+# key: ctor
+# --
+${1:Class}::$1($2) $3
+{
+        $0
+}

@@ -1,0 +1,4 @@
+# name: #include <iostream>
+# key: iostream
+# --
+#include			<iostream>

@@ -1,0 +1,167 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; append-tuareg.el - Tuareg quick installation: Append this file to .emacs.
+
+(add-to-list 'auto-mode-alist '("\\.ml[iylp]?" . tuareg-mode))
+(autoload 'tuareg-mode "tuareg" "Major mode for editing Caml code" t)
+(autoload 'camldebug "camldebug" "Run the Caml debugger" t)
+(dolist (ext '(".cmo" ".cmx" ".cma" ".cmxa" ".cmi"))
+  (add-to-list 'completion-ignored-extensions ext))
+
+(load "~/.emacs.d/autopair.el")
+(require 'autopair)
+(autopair-global-mode)
+
+;=================
+; S N I P P E T S
+;================
+(add-to-list 'load-path
+	     "~/.emacs.d/plugins/yasnippet")
+(require 'yasnippet)
+(yas-global-mode 1)
+
+;====================
+; R A C C O U R C I S
+;====================
+(global-set-key [f12] 'split-window-horizontally)
+(global-set-key [C-f12] 'convert-window-to-term)
+
+(global-set-key [M-left] 'windmove-left)          ; move to left windnow
+(global-set-key [M-right] 'windmove-right)        ; move to right window
+(global-set-key [M-up] 'windmove-up)              ; move to upper window
+(global-set-key [M-down] 'windmove-down)          ; move to downer window
+
+(global-set-key [f6]'comment-region)
+(global-set-key [S-f6]'uncomment-region)
+
+
+(set-language-environment "UTF-8")
+
+;==========================
+; A U T O - C O M P L E T E
+;==========================
+(add-to-list 'load-path "~/.emacs.d/auto-complete")
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/ac-dict")
+(ac-config-default)
+(global-auto-complete-mode t)
+; Start auto-completion after 2 characters of a word
+(setq ac-auto-start 2)
+; case sensitivity is important when finding matches
+(setq ac-ignore-case nil)
+
+;=========================================
+; P A R E N T H E S E  C O L O R A T I O N
+;=========================================
+(load "~/.emacs.d/rainbow-delimiters.elc")
+(require 'rainbow-delimiters)
+(global-rainbow-delimiters-mode)
+
+;===================================
+; P A R E N T H E S E  M A T C H E R
+;===================================
+(load "~/.emacs.d/xterm-frobs.el")
+(require 'paren)
+(show-paren-mode)
+
+
+;; Coupe la fenetre verticalement et creer un terminal dans la fenetre coupe
+(defun convert-window-to-term ()
+  "If ansi-term is not existed, start a new one & switch to them"
+  (interactive)
+    (ansi-term "/bin/zsh"))
+
+;Titre dans le haut de la fenetre
+(load "~/.emacs.d/xterm-title.el")
+(when (and (not window-system)
+	   (string-match "^xterm" (getenv "TERM")))
+  (require 'xterm-title)
+  (xterm-title-mode 1)
+)
+
+;; Retrait du menu
+(menu-bar-mode -1)
+
+;================
+; S K E L E T O N
+;================ 
+(load "~/.emacs.d/skeleton.el")
+;; Makefile
+(add-hook 'find-file-hook
+	  (lambda()
+	    (if (and
+		 (string-match "\\Makefile$" (buffer-file-name))
+		 (= (buffer-size) 0))
+		(create-makefile))))
+
+;; Header
+(add-hook 'find-file-hook
+	  (lambda()
+	    (if (and
+		 (string-match "\\.h$" (buffer-file-name))
+		 (= (buffer-size) 0))
+		(insert-protect-header
+		 (goto-line 4)))))
+
+(add-hook 'find-file-hook
+	  (lambda()
+	    (if (and
+		 (string-match "\\.hh$" (buffer-file-name))
+		 (= (buffer-size) 0))
+		(insert-protect-hheader
+		 (goto-line 4)))))
+
+;; HL Line
+(global-hl-line-mode 1)
+
+;; Remplacer le texte selectionne si on tape
+(delete-selection-mode 1)
+
+;; Coloration Syntaxique
+(global-font-lock-mode 1)
+
+;; Auto Tab
+(setq c-auto-newline 1)
+;; Indentation automatique
+(global-set-key "\C-m" 'newline-and-indent)
+
+;; Suppression des espaces en fin de ligne a l'enregistrement
+(add-hook 'c++-mode-hook '(lambda ()
+			    (add-hook 'write-contents-hooks 'delete-trailing-whitespace nil t)))
+(add-hook 'c-mode-hook '(lambda ()
+			    (add-hook 'write-contents-hooks 'delete-trailing-whitespace nil t)))
+
+;; Laisser le curseur en place lors d'un defilement par pages.
+;; Par defaut, Emacs place le curseur en debut ou fin d'ecran
+;; selon le sens du defilement.
+(setq scroll-preserve-screen-position t)
+
+;; Complette automatiquement ce que vous tapez dans le mini-buffer
+(icomplete-mode 1)
+
+;; Pouvoir utiliser la completition sous emacs en ignorant la casse
+(setq completion-ignore-case 1)
+
+;; Supprime les fichier ~
+(setq make-backup-files nil)
+
+;; yes > y | no > n
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;; Affiche le numero de ligne et de colonne
+(column-number-mode 1)
+(line-number-mode 1)
+
+;; Enlever le message au demarrage
+(setq inhibit-startup-message 1)
+
+;; Remplacer le texte selectionne si on tape
+(delete-selection-mode 1)
+
+;; Affiche l'heure au format 24h
+(setq display-time-24hr-format 1)
+(setq displat-time-day-and-date 1)
+
+;; ido mode
+(require 'ido)
+(ido-mode t)
+(setq ido-enable-flex-matching t)

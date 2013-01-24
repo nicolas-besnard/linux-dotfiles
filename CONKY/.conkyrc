@@ -1,0 +1,181 @@
+#Author: Thio
+# Conky sample configuration
+#
+# the list of variables has been removed from this file in favour
+# of keeping the documentation more maintainable.
+# Check http://conky.sf.net for an up-to-date-list.
+
+# set to yes if you want Conky to be forked in the background
+background yes
+
+# Create own window instead of using desktop (required in nautilus)
+own_window yes
+
+# If own_window is yes, you may use type normal, desktop or override
+own_window_type desktop
+
+# Use pseudo transparency with own_window?
+own_window_transparent yes
+
+# If own_window_transparent is set to no, you can set the background colour here
+own_window_colour black
+
+# If own_window is yes, these window manager hints may be used
+#own_window_hints undecorated,sticky,skip_taskbar,skip_pager
+
+# Use Xft?
+use_xft yes
+
+# Xft font when Xft is enabled
+xftfont Fixed:size=8#OCR A Std:size=8
+# Text alpha when using Xft
+xftalpha 1
+
+# Update interval in seconds
+update_interval 1
+
+# This is the number of times Conky will update before quitting.
+# Set to zero to run forever.
+total_run_times 0
+
+# Use double buffering (reduces flicker, may not work for everyone)
+double_buffer yes
+
+# Minimum size of text area
+minimum_size 300
+
+# Draw shades?
+draw_shades no
+
+# Draw outlines?
+draw_outline no
+
+# Draw borders around text
+draw_borders no
+
+# Draw borders around graphs
+draw_graph_borders yes
+
+# Stippled borders?
+stippled_borders 0
+
+# border margins
+border_margin 0
+
+# border width
+border_width 0
+
+# Default colors and also border colors
+default_color DEDEDE
+default_shade_color 1d1d1d
+default_outline_color green
+own_window_colour 6D6D6D
+
+# Text alignment, other possible values are commented
+#alignment top_left
+alignment top_right
+#alignment bottom_left
+#alignment bottom_right
+#alignment none
+
+# Gap between borders of screen and text
+# same thing as passing -x at command line
+gap_x 0
+gap_y 20
+
+# Subtract file system buffers from used memory?
+no_buffers yes
+
+# set to yes if you want all text to be in uppercase
+uppercase no
+
+# number of cpu samples to average
+# set to 1 to disable averaging
+cpu_avg_samples 4
+
+# number of net samples to average
+# set to 1 to disable averaging
+net_avg_samples 2
+
+# Force UTF8? note that UTF8 support required XFT
+override_utf8_locale yes
+
+# Add spaces to keep things from moving about?  This only affects certain objects.
+use_spacer yes
+
+# Allow each port monitor to track at most this many connections (if 0 or not set, default is 256)
+#max_port_monitor_connections 256
+
+# Maximum number of special things, e.g. fonts, offsets, aligns, etc.
+#max_specials 1024
+
+# Maximum size of buffer for user text, i.e. below TEXT line.
+#max_user_text 16384
+
+# variable is given either in format $variable or in ${variable}. Latter
+# allows characters right after the variable and must be used in network
+# stuff because of an argument
+
+# stuff after 'TEXT' will be formatted on screen
+
+TEXT
+#${font Zegoe Light - U:pixelsize=60}${alignc}${time %H:%M:%S}${font}
+#${font Zegoe Light - U:pixelsize=20}${color green}CAPPIE${hr 2}${color}${font}
+${color green}${hr 2}${color}
+${exec lsb_release -si} : $alignr${exec lsb_release -sr} ${exec lsb_release -sc}
+Uptime:${alignr}${uptime}
+${font Zegoe Light - U:pixelsize=20}${color green}PROCESSOR${hr 2}${color}${font}
+Intel Core i5${alignr}${freq_g}Ghz
+${cpubar cpu1 5,140}${alignr}${cpubar cpu2 5,140}
+${cpugraph cpu1 20,140 FF0000 FF9900}${alignr}${cpugraph cpu2 20,140 FF0000 FF9900}
+${offset 60}${voffset -25}${cpu cpu1}%${alignr}${offset -45}${cpu cpu2}%
+
+${cpubar cpu3 5,140}${alignr}${cpubar cpu4 5,140}
+${cpugraph cpu3 20,140 FF0000 FF9900}${alignr}${cpugraph cpu4 20,140 FF0000 FF9900}
+${offset 60}${voffset -25}${cpu cpu3}%${alignr}${offset -45}${cpu cpu4}%
+${font Zegoe Light - U:pixelsize=20}${color green}MEMORY${hr 2}${color}${font}
+MEM ${alignc} $mem / $memmax $alignr $memperc%
+${membar}
+SWAP $alignc $swap / $swapmax $alignr $swapperc%
+${swapbar}
+${font Zegoe Light - U:pixelsize=20}${color green}HARD DRIVE${hr 2}${color}${font}
+${fs_bar 15 /}
+${offset 20}${voffset -23}${color #F72671}/${alignc -30}${fs_free_perc /}%${alignr}[${fs_used /} / ${fs_size /}]${color}
+
+${fs_bar 15 /home}
+${offset 20}${voffset -23}${color #F72671}/home${alignc -30}${fs_free_perc /home}%${alignr}[${fs_used /home} / ${fs_size /home}] ${color}
+${if_mounted /media/Commun}
+${fs_bar 15 /media/Commun}
+${offset 20}${voffset -23}${color #F72671}Commun${alignc -30}${fs_free_perc /media/Commun}%${alignr}[${fs_used /media/Commun} / ${fs_size /media/Commun}] ${color}
+${endif} 
+${if_mounted /media/My\ Passport}
+${fs_bar 15 /media/My\ Passport}
+${offset 20}${voffset -23}${color #F72671}My\ Passport${alignc -30}${fs_free_perc /media/My\ Passport}%${alignr}[${fs_used /media/My\ Passport} / ${fs_size /media/My\ Passport}] ${color}${endif}${font Zegoe Light - U:pixelsize=20}${color green}TOP${hr 2}${color}${font}
+Top Procces${alignc}CPU${alignr}MEM
+${color AEAEAE}${top name 1}${alignc}${top cpu 1}%${alignr}${top mem 1}%
+${top name 2}${alignc}${top cpu 2}%${alignr}${top mem 2}%
+${top name 3}${alignc}${top cpu 3}%${alignr}${top mem 3}%
+${top name 4}${alignc}${top cpu 4}%${alignr}${top mem 4}%
+${top name 5}${alignc}${top cpu 5}%${alignr}${top mem 5}%${color}
+
+Top Memory${color AEAEAE}
+${top_mem name 1}${alignc}${top_mem cpu 1}%${alignr}${top_mem mem 1}%
+${top_mem name 2}${alignc}${top_mem cpu 2}%${alignr}${top_mem mem 2}%
+${top_mem name 3}${alignc}${top_mem cpu 3}%${alignr}${top_mem mem 3}%
+${top_mem name 4}${alignc}${top_mem cpu 4}%${alignr}${top_mem mem 4}%
+${top_mem name 5}${alignc}${top_mem cpu 5}%${alignr}${top_mem mem 5}%${color}
+${font Zegoe Light - U:pixelsize=20}${color green}NETWORK ${hr 2}${color}${font}
+${if_up wlan0}IP on wlan0 ${alignr}${texeci 3600 wget http://checkip.dyndns.org -O - -o /dev/null | cut -d : -f 2 | cut -d \< -f 1} [${addr wlan0}]
+${color white}${downspeedgraph wlan0 40,140 FF8200 ff0000}${alignr}${upspeedgraph wlan0 40,140 FF0000 FF9900}${color}
+${offset 20}${voffset -40}Down : ${downspeedf wlan0} k/s
+     Total : ${totaldown wlan0}
+     ${alignr}${offset -45}${voffset -25}Up : ${upspeedf wlan0} k/s
+     ${alignr}${offset -25}Total : ${totalup wlan0}${else}${if_up eth0}
+IP Extern${alignr}${texeci 3600 wget http://checkip.dyndns.org -O - -o /dev/null | cut -d : -f 2 | cut -d \< -f 1}
+IP Public${alignr}${addr eth0}
+${color white}${downspeedgraph eth0 40,140 FF8200 ff0000}${alignr}${upspeedgraph eth0 40,140 FF0000 FF9900}${color}
+${offset 20}${voffset -40}Down : ${downspeedf eth0} k/s
+     Total : ${totaldown eth0}
+     ${alignr}${offset -45}${voffset -25}Up : ${upspeedf eth0} k/s
+     ${alignr}${offset -25}Total : ${totalup eth0}
+${endif}

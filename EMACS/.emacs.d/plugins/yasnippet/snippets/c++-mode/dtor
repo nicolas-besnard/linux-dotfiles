@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: destructor
+# key: dtor
+# --
+${1:Class}::~$1() {}

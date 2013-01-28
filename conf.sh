@@ -15,4 +15,8 @@ wget --no-check-certificate https://github.com/robbyrussell/oh-my-zsh/raw/master
 ssh-keygen
 
 sudo cp XUBUNTU/xfce4-keyboard-shortcuts.xml ~/.config/xfce4/xfconf/xfce-perchannel-xml/
-chsh
+chsh -s /bin/zsh
+
+git config --global user.name "cappie013"
+git config --global user.email besnard.nicolas@gmail.com
+git config --global color.ui true

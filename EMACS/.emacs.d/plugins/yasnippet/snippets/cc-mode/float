@@ -1,0 +1,4 @@
+# name: float value;
+# key: float
+# --
+float				$1;

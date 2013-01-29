@@ -1,9 +1,6 @@
 #!/bin/sh
 
-echo "- Emacs"
-cp EMACS/.emacs ~/
-cp EMACS/.myemacs ~/
-cp -rf EMACS/.emacs.d/ ~/
+sh emacs.sh
 echo "- Conky"
 cp CONKY/.conkyrc ~/
 sudo apt-get update

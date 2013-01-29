@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: unistd
+# key: unistd
+# --
+#include			<unistd.h>

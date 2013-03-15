@@ -19,6 +19,84 @@
 (require 'yasnippet)
 (yas-global-mode 1)
 
+
+;==========================
+; A U T O - C O M P L E T E
+;==========================
+(add-to-list 'load-path "~/.emacs.d/auto-complete")
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/ac-dict")
+
+(ac-set-trigger-key "TAB")
+(ac-set-trigger-key "<tab>")
+(global-auto-complete-mode t)
+; Start auto-completion after 2 characters of a word
+(setq ac-auto-start 2)
+; case sensitivity is important when finding matches
+(setq ac-ignore-case nil)
+
+
+(defun prefix-list-elements (list prefix)
+  (let (value)
+    (nreverse
+     (dolist (element list value)
+       (setq value (cons (format "%s%s" prefix element) value))))))
+(defvar ac-source-rope
+  '((candidates
+     . (lambda ()
+	 (prefix-list-elements (rope-completions) ac-target))))
+  "Source for Rope")
+(defun ac-python-find ()
+  "Python `ac-find-function'."
+  (require 'thingatpt)
+  (let ((symbol (car-safe (bounds-of-thing-at-point 'symbol))))
+    (if (null symbol)
+	(if (string= "." (buffer-substring (- (point) 1) (point)))
+	    (point)
+	  nil)
+      symbol)))
+(defun ac-python-candidate ()
+  "Python `ac-candidates-function'"
+  (let (candidates)
+    (dolist (source ac-sources)
+      (if (symbolp source)
+	  (setq source (symbol-value source)))
+      (let* ((ac-limit (or (cdr-safe (assq 'limit source)) ac-limit))
+	     (requires (cdr-safe (assq 'requires source)))
+	     cand)
+	(if (or (null requires)
+		(>= (length ac-target) requires))
+	    (setq cand
+		  (delq nil
+			(mapcar (lambda (candidate)
+				  (propertize candidate 'source source))
+				(funcall (cdr (assq 'candidates source)))))))
+	(if (and (> ac-limit 1)
+		 (> (length cand) ac-limit))
+	    (setcdr (nthcdr (1- ac-limit) cand) nil))
+	(setq candidates (append candidates cand))))
+    (delete-dups candidates)))
+(add-hook 'python-mode-hook
+	  (lambda ()
+	    (auto-complete-mode 1)
+	    (set (make-local-variable 'ac-sources)
+		 (append ac-sources '(ac-source-rope) '(ac-source-yasnippet)))
+	    (set (make-local-variable 'ac-find-function) 'ac-python-find)
+	    (set (make-local-variable 'ac-candidate-function) 'ac-python-candidate)
+	    (set (make-local-variable 'ac-auto-start) nil)))
+
+
+
+
+
+;=================
+; M A R K D O W N
+;================
+(add-to-list 'load-path "~/.emacs.d/mode/")
+(autoload 'markdown-mode "markdown-mode"
+     "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
 ;====================
 ; R A C C O U R C I S
 ;====================
@@ -36,19 +114,6 @@
 
 (set-language-environment "UTF-8")
 
-;==========================
-; A U T O - C O M P L E T E
-;==========================
-(add-to-list 'load-path "~/.emacs.d/auto-complete")
-(require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/ac-dict")
-(ac-config-default)
-(global-auto-complete-mode t)
-; Start auto-completion after 2 characters of a word
-(setq ac-auto-start 2)
-; case sensitivity is important when finding matches
-(setq ac-ignore-case nil)
-
 ;=========================================
 ; P A R E N T H E S E  C O L O R A T I O N
 ;=========================================
@@ -59,7 +124,6 @@
 ;===================================
 ; P A R E N T H E S E  M A T C H E R
 ;===================================
-(load "~/.emacs.d/xterm-frobs.el")
 (require 'paren)
 (show-paren-mode)
 
@@ -70,13 +134,6 @@
   (interactive)
     (ansi-term "/bin/zsh"))
 
-;Titre dans le haut de la fenetre
-(load "~/.emacs.d/xterm-title.el")
-(when (and (not window-system)
-	   (string-match "^xterm" (getenv "TERM")))
-  (require 'xterm-title)
-  (xterm-title-mode 1)
-)
 
 ;; Retrait du menu
 (menu-bar-mode -1)

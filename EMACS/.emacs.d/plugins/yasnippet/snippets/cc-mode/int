@@ -1,4 +1,0 @@
-# name: int value;
-# key: int
-# --
-int				$1;

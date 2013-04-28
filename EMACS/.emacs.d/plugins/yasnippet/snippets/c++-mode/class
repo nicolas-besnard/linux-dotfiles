@@ -1,7 +1,7 @@
 # name: class ... { ... }
 # key: class
 # --
-class				${1:Name}
+class				${1:`(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`}
 {
 // ATTRIBUTS
 private:

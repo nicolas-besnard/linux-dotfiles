@@ -10,12 +10,4 @@
     (load-file "~/.myemacs")
 )
 
-(setq frame-title-format '(buffer-name "%f" ("%b")))
-
-(custom-set-faces
- '(font-lock-builtin-face ((((class color) (min-colors 8)) (:foreground "red"))))
- '(font-lock-function-name-face ((((class color) (min-colors 8)) (:foreground "blue" :weight ultra-bold))))
- '(hl-line ((t (:weight bold))))
- '(linum ((t (:inherit (shadow default) :background "#DEDEDE" :foreground "black"))))
-)
 

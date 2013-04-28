@@ -11,6 +11,25 @@
 (require 'autopair)
 (autopair-global-mode)
 
+(setq frame-title-format '(buffer-name "%f" ("%b")))
+
+(custom-set-faces
+ '(font-lock-builtin-face ((((class color) (min-colors 8)) (:foreground "red"))))
+ '(font-lock-function-name-face ((((class color) (min-colors 8)) (:foreground "blue" :weight ultra-bold))))
+ '(hl-line ((t (:weight bold))))
+ '(linum ((t (:inherit (shadow default) :background "#DE"))))
+ )
+
+; L I N E
+(global-linum-mode 1)
+(custom-set-variables '(linum-format 'dynamic))
+(defadvice linum-update-window (around linum-dynamic activate)
+  (let* ((w (length (number-to-string
+		     (count-lines (point-min) (point-max)))))
+	 (linum-format (concat "%-" (number-to-string w) "d ")))
+    ad-do-it))
+
+
 ;=================
 ; S N I P P E T S
 ;================

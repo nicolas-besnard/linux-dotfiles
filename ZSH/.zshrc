@@ -50,7 +50,11 @@ alias mv="mv -v"
 alias cp="cp -v"
 alias rm="rm -v"
 
+alias l="ls -l"
+alias svn_epitech="~/.bin/svn_epitech.sh"
 alias j="jobs"
+
+alias soul="perl ~/.bin/jogsoul.pl ~/.bin/jogsoul.conf"
 
 alias clean="find ~/ \( -name '*~' -o -name '#*#' \) -delete -exec echo "Removed" {} \;"
 

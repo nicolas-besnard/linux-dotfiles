@@ -21,14 +21,13 @@
  )
 
 ; L I N E
-(global-linum-mode 1)
-(custom-set-variables '(linum-format 'dynamic))
-(defadvice linum-update-window (around linum-dynamic activate)
-  (let* ((w (length (number-to-string
-		     (count-lines (point-min) (point-max)))))
-	 (linum-format (concat "%-" (number-to-string w) "d ")))
-    ad-do-it))
-
+;(global-linum-mode 1)
+;(custom-set-variables '(linum-format 'dynamic))
+;(defadvice linum-update-window (around linum-dynamic activate)
+;  (let* ((w (length (number-to-string
+;		     (count-lines (point-min) (point-max)))))
+;	 (linum-format (concat "%-" (number-to-string w) "d ")))
+;    ad-do-it))
 
 ;=================
 ; S N I P P E T S

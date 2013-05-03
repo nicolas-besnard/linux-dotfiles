@@ -1,9 +1,8 @@
 #!/bin/sh
 
 sh emacs.sh
-cp CONKY/.conkyrc ~/
 sudo apt-get update
-sudo apt-get install valgrind htop conky
+sudo apt-get install valgrind htop
 sudo apt-get install compizconfig-settings-manager
 
 # Compiz XFCE

@@ -16,6 +16,7 @@ sudo apt-get install ssh zsh
 wget --no-check-certificate https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
 chsh -s /bin/zsh
 cp ZSH/.zshrc ~/
+cp ZSH/robbyrussell.zsh-theme ~/.oh-my-zsh/themes/
 
 git config --global user.name "cappie013"
 git config --global user.email besnard.nicolas@gmail.com

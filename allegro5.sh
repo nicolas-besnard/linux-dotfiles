@@ -6,6 +6,6 @@ git clone git://git.code.sf.net/p/alleg/allegro
 cd allegro
 git checkout 5.0
 mkdir build; cd build
-ccmake -DCMAKE_INSTALL_PREFIX=/usr ..
+cmake -DCMAKE_INSTALL_PREFIX=/usr ..
 make
 sudo make install

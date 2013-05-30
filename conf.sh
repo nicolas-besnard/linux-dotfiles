@@ -1,7 +1,8 @@
 #!/bin/sh
 
-sh emacs.sh
 sudo apt-get update
+sudo apt-get install emacs
+sh emacs.sh
 sudo apt-get install valgrind htop
 sudo apt-get install compizconfig-settings-manager
 
@@ -16,8 +17,7 @@ sudo apt-get install ssh zsh
 wget --no-check-certificate https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
 chsh -s /bin/zsh
 cp ZSH/.zshrc ~/
+cp ZSH/robbyrussell.zsh-theme  ~/.oh-my-zsh/themes/robbyrussell.zsh-theme
 
-git config --global user.name "cappie013"
-git config --global user.email besnard.nicolas@gmail.com
-git config --global color.ui true
-git config --global core.editor "emacs -nw"
+# GIT
+cp .gitconfig ~/

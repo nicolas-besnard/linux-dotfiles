@@ -1,0 +1,11 @@
+[user]
+	name = cappie013
+	email = besnard.nicolas@gmail.com
+[color]
+	ui = true
+[core]
+	editor = emacs -nw
+[alias]
+	co = checkout
+	ci = commit
+	b = branch -a

@@ -39,6 +39,6 @@ gset string palette "#000000000000:#919122222626:#777789890000:#AEAE7B7B0000:#42
 gset string background_color "#1d1d1f1f2121"
 gset string foreground_color "#c5c5c8c8c6c6"
 gset string bold_color "#8A8ABEBEB7B7"
-gset bool   bold_color_same_as_fg "false"
+gset bool   bold_color_same_as_fg "true"
 gset bool   use_theme_colors "false"
 gset bool   use_theme_background "false"

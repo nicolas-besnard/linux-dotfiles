@@ -7,6 +7,9 @@
 (dolist (ext '(".cmo" ".cmx" ".cma" ".cmxa" ".cmi"))
   (add-to-list 'completion-ignored-extensions ext))
 
+(load "~/.emacs.d/ll-debug")
+(require 'll-debug)
+
 (load "~/.emacs.d/autopair.el")
 (require 'autopair)
 (autopair-global-mode)
@@ -128,7 +131,7 @@
 
 (global-set-key [f6]'comment-region)
 (global-set-key [S-f6]'uncomment-region)
-
+(global-set-key "\M-:" 'll-debug-toggle-comment-region-or-line)
 
 (set-language-environment "UTF-8")
 

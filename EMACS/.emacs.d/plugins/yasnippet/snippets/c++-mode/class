@@ -3,19 +3,13 @@
 # --
 class				${1:`(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`}
 {
-// ATTRIBUTS
-private:
-
-// CTOR - DTOR
 public:
-    ${1:$(yas-substr text "[^: ]*")}($2);
+    ${1:$(yas-substr text "[^: ]*")}(${2:void});
     ~${1:$(yas-substr text "[^: ]*")}();
-    ${1:$(yas-substr text "[^: ]*")}($1 const &);
-    
-// OPERATOR
-public:
-$1 &			operator=($1 const &);
 
-// METHODS
-public:
+protected:
+
+private:
+$1 			&operator=(const $1 &other);
+${1:$(yas-substr text "[^: ]*")}(const $1 &other);
 };

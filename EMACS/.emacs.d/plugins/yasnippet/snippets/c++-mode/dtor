@@ -2,5 +2,4 @@
 # name: destructor
 # key: dtor
 # --
-${1:`(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`}::~$1()
-{}
+${1:`(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`}::~$1() {}

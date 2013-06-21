@@ -1,3 +1,5 @@
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
@@ -37,10 +39,12 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/nicolas/.rvm/gems/ruby-1.9.3-p429/bin
 
 alias ne="emacs -nw"
 alias e="ne"
+
+alias re="make fclean && make -j8"
 
 alias install="sudo apt-get install"
 alias update="sudo apt-get update"
@@ -80,3 +84,4 @@ et () {
 	echo "'$1' is not a valid file!"
     fi
 }
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

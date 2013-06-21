@@ -21,3 +21,4 @@ cp ZSH/robbyrussell.zsh-theme ~/.oh-my-zsh/themes/
 
 # GIT
 cp .gitconfig ~/
+cp GNOME-TERMINAL/%gconf.xml ~/.gconf/apps/gnome-terminal/profiles/Default/

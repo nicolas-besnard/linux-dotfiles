@@ -214,7 +214,7 @@
 (setq scroll-preserve-screen-position t)
 
 ;; Complette automatiquement ce que vous tapez dans le mini-buffer
-(icomplete-mode 1)
+;;(icomplete-mode 1)
 
 ;; Pouvoir utiliser la completition sous emacs en ignorant la casse
 (setq completion-ignore-case 1)

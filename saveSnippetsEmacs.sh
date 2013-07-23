@@ -1,0 +1,1 @@
+cp -rf ~/.emacs.d/plugins/yasnippet/snippets/ ~/linux-dotfiles/EMACS/.emacs.d/plugins/yasnippet/

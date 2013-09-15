@@ -1,5 +1,6 @@
 #python
-wget -nc http://python.org/ftp/python/3.3.2/Python-3.3.2.tar.bz2
+wget -nc http://python.org/ftp/python/3.3.2/Python-3.3.2.tar.bz2 --directory-prefix=/tmp
+cd /tmp
 tar xf Python-3.3.2.tar.bz2
 cd Python-3.3.2
 ./configure --prefix=/usr/local

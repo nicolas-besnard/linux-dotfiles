@@ -1,5 +1,4 @@
 #!/bin/sh
-curl https://npmjs.org/install.sh | sudo sh
 git clone https://github.com/joyent/node.git /tmp/node
 cd /tmp/node
 ./configure
@@ -9,4 +8,5 @@ sudo make install
 #sudo add-apt-repository ppa:chris-lea/node.js
 #sudo apt-get update
 #sudo apt-get install nodejs
+curl https://npmjs.org/install.sh | sudo sh
 sudo npm install -g coffee-script

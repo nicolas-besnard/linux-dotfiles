@@ -1,7 +1,7 @@
 #!/bin/sh
 
 sudo apt-get update
-sudo apt-get install emacs subversion valgrind htop compizconfig-settings-manager libxss1 curl -y
+sudo apt-get install emacs subversion valgrind htop compizconfig-settings-manager libxss1 curl g++ -y
 
 # ZSH
 sudo apt-get install ssh zsh -y

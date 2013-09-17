@@ -1,5 +1,5 @@
 #!/bin/sh
-git clone https://github.com/joyent/node.git /tmp/node
+git clone https://github.com/joyent/node.git /tmp/node --depth 1
 cd /tmp/node
 ./configure
 make -j8
